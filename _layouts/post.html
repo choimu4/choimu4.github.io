@@ -69,9 +69,7 @@ sidebar:
     {%- assign result = hidden | where_exp: "item", "item == 'comments'" -%}
     {%- if result.size == 0 -%}
     <div class="post-comments">
-      <script src="https://utteranc.es/client.js" repo="choimu4/blog-comments" issue-term="pathname" label="comments"
-        theme="photon-dark" crossorigin="anonymous" async>
-        </script>
+
       {%- if page.comments != false -%}
 
       {%- if site.disqus.shortname -%}
@@ -89,6 +87,8 @@ sidebar:
       {%- endif -%}
     </div>
     {%- endif -%}
-
+    <script src="https://utteranc.es/client.js" repo="choimu4/blog-comments" issue-term="pathname" label="comments"
+    theme="photon-dark" crossorigin="anonymous" async>
+    </script>
   </section>
 </div>
