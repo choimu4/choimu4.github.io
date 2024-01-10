@@ -228,12 +228,12 @@ night_mode: "on"
 # See https://utteranc.es/
 # set follow_site_theme true to make utterances' theme follow the site's
 
- utterances:
-   repo: "choimu4/blog-comments"
-   issue_term: "pathname"
-   label: "comments"
-   theme: "photon-dark"
-   follow_site_theme: true
+ #utterances:
+   #repo: "choimu4/blog-comments"
+   #issue_term: "pathname"
+   #label: "comments"
+   #theme: "photon-dark"
+   #follow_site_theme: true
 
 # Build settings
 # highlighter: none
