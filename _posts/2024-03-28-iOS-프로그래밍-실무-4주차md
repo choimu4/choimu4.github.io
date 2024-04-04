@@ -1,0 +1,501 @@
+---
+layout: post
+title: iOS 프로그래밍 실무 4주차 
+subtitle: iOS 프로그래밍 실무 4주차 
+author: 민욱 최 
+excerpt_image: ../assets/images/swift_banner.PNG
+categories: Swift
+banner:
+  image: ../assets/images/swift_banner.PNG
+  opacity: 0.618
+  background: "#000"
+  height: "100vh"
+  min_height: "38vh"
+  heading_style: "font-size: 3.5em; font-weight: bold; text-decoration: underline"
+  subheading_style: "color: gold"
+tags: iOS Swift Induk
+---
+       
+## 클래스
+---
+
+### 나이와 뭄무게를 print하는 클래스
+
+``` Swift
+// 'Man'이라는 이름의 클래스를 정의합니다.
+class Man {
+    // 'age'라는 이름의 변수(속성, stored property)를 정의하고, 초기값으로 1을 할당합니다. 이 변수는 인스턴스의 나이를 나타냅니다.
+    var age: Int = 1
+    
+    // 'weight'라는 이름의 변수(속성, stored property)를 정의하고, 초기값으로 3.5를 할당합니다. 이 변수는 인스턴스의 몸무게를 나타냅니다.
+    var weight: Double = 3.5
+    
+    // 'display'라는 이름의 함수(메서드)를 정의합니다. 이 메서드는 인스턴스의 나이와 몸무게를 출력합니다.
+    func display() {
+        print("나이 = \(age), 몸무게 = \(weight)")
+    }
+}
+
+// 'Man' 클래스의 인스턴스를 생성하고, 'kim'이라는 변수에 할당합니다.
+var kim = Man()
+
+// 'kim' 인스턴스의 'age' 속성을 출력합니다. 초기값인 1이 출력됩니다.
+print(kim.age)
+
+// 'kim' 인스턴스의 'weight' 속성을 출력합니다. 초기값인 3.5가 출력됩니다.
+print(kim.weight)
+
+// 'kim' 인스턴스의 'display' 메서드를 호출합니다. 이 메서드는 인스턴스의 나이와 몸무게를 출력합니다.
+kim.display()
+
+```
+
+### static / class 
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/8004e037-1eed-49d9-8438-f3740243dc89)
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/168cc29e-51cd-424e-b77a-5f7225b42e55)
+
+* class, static 메서드는 클래스로 호출해야한다.
+* class 키워드로 만든 클래스 메서드는 자식 클래스에서 override 가능함.
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/d2183659-60f9-489d-85ae-b9bb3acf4647)
+
+### 초기 값을 없애면 ?
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/c261210b-9ce2-45c0-99ab-6408c2384d94)
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/c2dc309d-fcda-4a86-9114-06fd1106522e)
+
+초기 처럼 초기값을 지정하거나 init()을 사용해서 오류를 해결할 수 있다.
+init()은 자동으로 호출되기 때문에 생략해도 무방하다.
+
+``` Swift
+class Man {
+    var age: Int
+    var weight : Double
+    init(a : Int, w : Double){
+        age = a
+        weight = w
+    }
+    func display() {
+        print("나이 = \(age), 몸무게 = \(weight)")
+    }
+}
+
+var kim = Man.init(a: 1, w: 3.5) 
+kim.display()
+
+var kim1 = Man(a: 2, w: 5.5)
+kim.display()
+
+// initializer를 사용하여 매개변수 값을 지정할 수 있다.
+// .init을 생략해도 된다.
+```
+
+### self
+
+``` Swift
+// 'Man'이라는 이름의 클래스를 정의합니다.
+class Man {
+    // 'age'라는 이름의 변수(속성)를 정의합니다. 이 변수는 인스턴스의 나이를 나타냅니다.
+    var age: Int
+    // 'weight'라는 이름의 변수(속성)를 정의합니다. 이 변수는 인스턴스의 몸무게를 나타냅니다.
+    var weight: Double
+    
+    // 초기화 메서드를 정의합니다. 이 메서드는 클래스의 인스턴스를 생성할 때 호출되며, 인스턴스의 속성을 초기화합니다.
+    init(age: Int, weight: Double) { //designated initializer : 모든 프로퍼티를 초기화 시키는 생성자
+        // 'self' 키워드를 사용하여 클래스의 속성에 접근합니다.
+        self.age = age
+        self.weight = weight
+    }
+    
+    // 'display'라는 이름의 함수(메서드)를 정의합니다. 이 메서드는 인스턴스의 나이와 몸무게를 출력합니다.
+    func display() {
+        print("나이 = \(age), 몸무게 = \(weight)")
+    }
+}
+
+// 'Man' 클래스의 인스턴스를 생성하고, 초기화 메서드를 사용하여 속성을 초기화합니다.
+var kim = Man(age: 1, weight: 3.5)
+// 'display' 메서드를 호출하여 'kim' 인스턴스의 나이와 몸무게를 출력합니다.
+kim.display()
+
+// 또 다른 'Man' 클래스의 인스턴스를 생성하고, 초기화 메서드를 사용하여 속성을 초기화합니다.
+var kim1 = Man(age: 2, weight: 5.5)
+// 'display' 메서드를 호출하여 'kim1' 인스턴스의 나이와 몸무게를 출력합니다.
+kim1.display()
+
+```
+현재 클래스 내 메서드나 프로퍼티를 가리킬 때 메서드나 프로퍼티 앞에 self.를 붙인다.
+
+### method overloading : 생성자 중첩
+
+``` Swift
+class Man {
+    var age: Int
+    var weight : Double
+    init(age : Int, weight : Double){ // designited initializer
+        self.age = age
+        self.weight = weight
+    }
+    init(){ // 이 메서드는 그냥 ()로 호출할 때 호출된다.
+         age = 1
+         weight = 2.5
+    }
+    func display() {
+        print("나이 = \(age), 몸무게 = \(weight)")
+    }
+}
+
+var kim = Man(age: 1, weight: 3.5)
+kim.display()
+
+var kim1 = Man()
+kim1.display()
+```
+method overloading : 매개변수의 개수와 자료형이 다른 같은 이름의 함수를 여러 개 정의
+
+### UIImage class의 init()함수 overloading
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/89c4f443-b85e-4148-ab8a-73b7eab309f4)
+
+init()함수가 매우 많은 것을 볼 수 있다.
+
+
+
+## 상속 
+---
+
+### superclass subclass
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/66514020-4679-4a4d-99b2-e57fd2271312)
+
+* 부모 클래스 : superclass
+    * 단일 상속
+* 자식 클래스 : subclass
+
+### Swift 상속
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/b64560ba-6d4e-4394-b19b-dc31c558447d)
+
+### 상속 : 부모가 가진 것을 모두 물려받는다.
+
+``` Swift
+class Man {
+    var age: Int
+    var weight : Double
+    init(age : Int, weight : Double){
+        self.age = age
+        self.weight = weight
+    }
+    func display() {
+        print("나이 = \(age), 몸무게 = \(weight)")
+    }
+}
+
+class Student : Man { // Student: 자식 / Man : 부모
+    
+}
+
+var kim = Man(age: 1, weight: 3.5)
+kim.display()
+var kim1 = Student(age: 10, weight: 66.5)
+kim1.display()
+
+// var kim1 = Man()
+// kim1.display()
+```
+Student(자식)가 Man(부모)의 모든 것을 물려받았다.
+
+### super: 부모 메서드 호출 시 사용
+
+``` Swift
+class Man {
+    var age: Int
+    var weight : Double
+    init(age : Int, weight : Double){
+        self.age = age
+        self.weight = weight
+    }
+    func display() {
+        print("나이 = \(age), 몸무게 = \(weight)")
+    }
+}
+
+class Student : Man {
+    var name : String
+    func displayS() {
+        print("이름=\(name), 나이=\(age), 몸무게=\(weight)")
+    }
+    init(age: Int, weight : Double, name : String){
+        self.name = name
+        super.init(age:age, weight:weight)
+    }
+}
+
+var kim = Man(age: 1, weight: 3.5)
+kim.display()
+var kim1 = Student(age: 10, weight: 66.5, name: "choimu")
+kim1.displayS()
+```
+부모 쪽에 있는 property를 초기화 할땐 super.init()을 사용한다.
+
+### override : 부모와 자식에 같은 메서드가 있으면 자식 우선
+
+``` Swift
+class Man {
+    var age: Int
+    var weight : Double
+    init(age : Int, weight : Double){
+        self.age = age
+        self.weight = weight
+    }
+    func display() {
+        print("나이 = \(age), 몸무게 = \(weight)")
+    }
+}
+
+class Student : Man {
+    var name : String
+    override func display() { 
+        print("이름=\(name), 나이=\(age), 몸무게=\(weight)")
+    }
+    init(age: Int, weight : Double, name : String){
+        self.name = name
+        super.init(age:age, weight:weight)
+    }
+}
+
+var kim = Man(age: 1, weight: 3.5)
+kim.display()
+var kim1 = Student(age: 10, weight: 66.5, name: "choimu")
+kim1.display()
+```
+자식인 Student 클래스의 display 메서드를 우선적으로 사용한다.
+
+
+## Swift 접근 제어 (access control, access modifier)
+---
+
+접근 제어자는 객체 지향 프로그래밍 언어에서 클래스, 메서드, 그리고 다른 멤버들의 접근성을 설정하는 키워드입니다. 이는 프로그래밍 언어 구문의 특정 부분으로, 컴포넌트의 캡슐화를 용이하게 하기 위해 사용됩니다. 접근 제어자는 클래스 멤버들(변수, 메서드, 내부 요소 등)에 대한 특정 접근 규칙을 설정하는 데 사용됩니다. 
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/4811df1f-f15b-444b-91a4-e8b55ce80ad8)
+
+### 프로그래밍 언어의 access modifier
+
+일반적 용도: 클래스, 메서드, 변수 등의 접근 범위를 제한하여, 데이터의 안전성과 객체 지향 설계의 원칙을 유지합니다.    
+예시: C++에서는 public, protected, private 등의 접근 제어자를 사용하여 클래스의 멤버에 대한 접근 권한을 설정합니다.
+
+### Swift 언어의 access modifier
+
+Swift에서는 엔티티의 접근 수준을 설정하기 위해 open, public, internal, fileprivate, private 등의 접근 제어자를 사용합니다.  
+각 접근 제어자는 엔티티의 선언 시작 부분에 위치하여, 해당 엔티티에 대한 접근 범위를 명시적으로 지정합니다. 
+
+open과 public: 메서드, 속성, 클래스를 어디서든 접근할 수 있게 합니다. open은 모듈 외부에서도 상속 및 오버라이드가 가능하게 합니다.  
+internal: 기본 접근 수준으로, 같은 모듈 내에서만 접근할 수 있습니다.   
+fileprivate: 같은 파일 내에서만 접근할 수 있게 합니다.   
+private: 가장 제한적인 접근 수준으로, 같은 범위 내에서만 접근할 수 있습니다.   
+Swift의 접근 제어자는 코드의 안전성을 높이고, 모듈화 및 캡슐화를 통해 더욱 견고하고 유지보수가 용이한 코드를 작성할 수 있게 돕습니다. 🛠️   
+
+Swift에서 접근 제어자를 효과적으로 사용하는 것은 앱의 아키텍처를 설계하고, 코드의 보안성을 높이는 데 중요한 역할을 합니다.  
+각 접근 제어자의 특성을 이해하고 적절히 적용함으로써, 더욱 안전하고 관리하기 쉬운 Swift 애플리케이션을 개발할 수 있습니다. 🙂
+
+### 프로그래밍 언어 별 default access modifier
+
+### C++
+- **기본 접근 제어자**: `private`
+- **설명**: C++에서 클래스의 멤버는 기본적으로 `private` 접근 제어자를 가집니다. 이는 해당 멤버가 클래스 내부에서만 접근 가능함을 의미합니다.
+
+### Java
+- **기본 접근 제어자**: (패키지 내) `default` (또는 `package-private`)
+- **설명**: Java에서 명시적으로 접근 제어자를 지정하지 않은 경우, 해당 멤버는 같은 패키지 내에서만 접근 가능한 `default` 접근 수준을 가집니다. [[3]](https://www.geeksforgeeks.org/access-modifiers-java/)
+
+### C#
+- **기본 접근 제어자**: `private`
+- **설명**: C#에서는 클래스의 멤버가 기본적으로 `private` 접근 제어자를 가집니다. 이는 해당 멤버가 해당 클래스 내부에서만 접근 가능함을 의미합니다.
+
+### Swift
+- **기본 접근 제어자**: `internal`
+- **설명**: Swift에서는 명시적으로 접근 제어자를 지정하지 않은 경우, `internal` 접근 수준이 기본값으로 적용됩니다. 이는 해당 엔티티가 같은 모듈 내에서만 접근 가능함을 의미합니다.
+
+각 프로그래밍 언어의 기본 접근 제어자는 해당 언어의 설계 철학과 보안 요구 사항을 반영합니다.  
+프로그래머는 이러한 기본값을 이해하고, 필요에 따라 명시적으로 접근 제어자를 지정하여 코드의 안전성과 유지보수성을 높일 수 있습니다. 🛠️
+
+프로그래밍 언어 별로 기본 접근 제어자의 차이를 이해하는 것은 코드의 접근성과 보안을 관리하는 데 중요한 기초가 됩니다.   
+각 언어의 특성에 맞게 적절한 접근 제어자를 선택하여 사용하는 것이 좋습니다. 🙂
+
+## Protocol / Delegate
+---
+
+### Protocol
+- **정의**: Protocol은 특정 기능을 위한 메서드, 프로퍼티 등의 청사진을 정의합니다.   
+이는 '약속' 또는 '계약'과 같으며, 어떤 클래스나 구조체가 이 프로토콜을 채택(Adopt)하면, 정의된 메서드나 프로퍼티를 구현해야 합니다. 
+- **예시**: 여러분이 음식점에서 주문을 할 때, 메뉴판은 Protocol과 같습니다. 메뉴판에는 음식의 이름과 가격이 정의되어 있으며, 여러분은 그 중에서 선택합니다. 여기서 음식점은 Protocol을 채택하여 메뉴판에 있는 음식을 제공하는 역할을 합니다.
+
+### Delegate
+- **정의**: Delegate 패턴은 객체 간의 통신을 위해 사용됩니다. 한 객체가 특정 작업을 다른 객체에 위임(delegate)하는 것을 의미합니다. 이는 일종의 역할 분담으로, 객체가 자신의 일부 기능을 다른 객체에 맡기는 것입니다. 
+- **예시**: 여러분이 파티를 주최한다고 가정해봅시다. 여러분은 음악을 담당할 DJ를 선정합니다. 여기서 여러분은 파티의 주최자이며, DJ는 음악을 담당하는 Delegate입니다. 여러분은 음악과 관련된 모든 결정을 DJ에게 위임합니다. 이처럼 Delegate는 특정 업무를 전담하여 처리합니다.
+
+
+### protocol 정의, 채택, 준수
+
+``` Swift
+protocol Run {
+    var x: Int { get set } // 프로퍼티 x를 정의합니다. 이 프로퍼티는 get과 set이 가능해야 합니다.
+    func run() // run() 메서드를 정의합니다. 이 메서드는 구현될 클래스나 구조체에서 실제 기능을 구현해야 합니다.
+}
+
+class Man: Run { // Man 클래스가 Run 프로토콜을 채택합니다. 이는 Man 클래스가 Run 프로토콜의 요구사항을 준수해야 함을 의미합니다.
+    var x: Int = 0 // Man 클래스가 프로토콜의 프로퍼티 x를 준수합니다. 초기값으로 0을 할당합니다.
+    
+    func run() { // Man 클래스가 프로토콜의 run() 메서드를 준수합니다. 실제로 메서드가 호출될 때 실행될 코드를 구현합니다.
+        print("run")
+    }
+}
+
+class Dog: Run { // Dog 클래스가 Run 프로토콜을 채택합니다. 이는 Dog 클래스가 Run 프로토콜의 요구사항을 준수해야 함을 의미합니다.
+    var x: Int = 0 // Dog 클래스가 프로토콜의 프로퍼티 x를 준수합니다. 초기값으로 0을 할당합니다.
+    
+    func run() { // Dog 클래스가 프로토콜의 run() 메서드를 준수합니다. 실제로 메서드가 호출될 때 실행될 코드를 구현합니다.
+        print("bomi run")
+    }
+}
+
+var kim = Man() // Man 클래스의 인스턴스를 생성합니다. 이 인스턴스는 kim이라는 변수에 할당됩니다.
+kim.run() // kim 인스턴스(Man 클래스의 인스턴스)의 run() 메서드를 호출합니다. 콘솔에는 "run"이 출력됩니다.
+var bomi = Dog() // Dog 클래스의 인스턴스를 생성합니다. 이 인스턴스는 bomi라는 변수에 할당됩니다.
+bomi.run() // bomi 인스턴스(Dog 클래스의 인스턴스)의 run() 메서드를 호출합니다. 콘솔에는 "bomi run"이 출력됩니다.
+```
+
+## 맛집 앱 개발 (1)
+---
+
+### Delegate나 DataSource를 사용하는 UI 컴포넌트
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/bcb223c8-7101-4ac6-b800-20f70e444e3c)
+
+### 상속과 프로토콜 채택(adopt)
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/460d59d2-ce6d-4442-b2fa-f83aa26cda59)
+
+
+### UIVIewController VS UIViewTableController
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/736307de-5e19-4262-b92b-c800ec7c9f31)
+
+
+### tableView iOS app
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/c1094b9c-6f7b-4766-bc4e-f37dfd9e1119)
+
+### leading? trailing
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/08ad46f3-fac3-402c-99fc-eed3361a6866)
+
+leading은 앞 trailing은 뒤이다.
+
+### @IBOutlet weak var table: UITableView!
+
+@IBOutlet은 Interface Builder에서 사용자 인터페이스 요소와 코드를 연결하는 데 사용되는 특별한 키워드입니다. 이 키워드는 Interface Builder에서 사용자 인터페이스 요소를 코드에 연결할 때 사용됩니다.
+
+weak는 참조 타입의 속성을 약한 참조로 선언하는 키워드입니다. 이를 통해 메모리 누수를 방지하고, 참조 사이클을 방지할 수 있습니다.
+
+var table: UITableView!는 UITableView 타입의 변수 table을 선언하는 부분입니다. 여기서 !는 암시적으로 해제된 옵셔널을 나타냅니다. 즉, 이 변수는 nil이 될 수 없음을 나타냅니다.
+
+따라서 @IBOutlet weak var table: UITableView!는 Interface Builder에서 연결된 UITableView 요소를 코드에서 참조하기 위한 선언이며, 옵셔널을 암시적으로 해제하여 사용한다는 것을 의미합니다.
+
+
+### tableView 에서 section 과 row
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/5d0ba6c1-bc3c-4033-8ba1-11e4169b1013)
+
+
+### tableView
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/69a11b07-7847-4b5e-997e-39329a371cb0)
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/51aa95ab-832b-4b1b-a89c-3e09af5be060)
+
+
+### description
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/6ff9839a-fe84-4630-88b2-9d280917735e)
+
+### image
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/9c7b4ccd-83d6-4bcb-8807-58bebbe644d0)
+
+
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/4d92fc32-9a04-412e-9e5d-27d78e06fca0)
+
+### 1차 완성
+
+``` Swift
+//
+//  ViewController.swift
+//  TableB
+//
+//  Created by Induk-cs  on 2024/04/04.
+//
+
+import UIKit
+
+var image = ["1.png", "2.png", "3.png", "4.png", "5.png"]
+var name = ["맛집1", "맛집2", "맛집3", "맛집4", "맛집5"]
+var phone = ["010-1234-5678","010-1111-1278","010-1234-5328","010-6744-2478","010-9834-5248"]
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var table: UITableView!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
+        cell.textLabel?.text = name[indexPath.row]
+        cell.detailTextLabel?.text = phone[indexPath.row]
+        cell.imageView?.image = UIImage(named: image[indexPath.row])
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        table.delegate = self
+        table.dataSource = self
+    }
+
+
+}
+```
+![image](https://github.com/choimu4/choimu4.github.io/assets/155925706/c54406b5-d6ee-4b34-b918-eda5d7463903)
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## 출처
+---
+* Smile Han의 iOS 프로그래밍 실무, 한성현(출판 예정), PPT로 제공  
+* Do it! 스위프트로 아이폰 앱 만들기 입문(개정 7판)(이지스퍼블리싱,송호정, 이범근, 2023.1)  
+* 핵심만 골라 배우는 SwiftUI 기반의 iOS 프로그래밍(제이펍, 닐 스미스, 2023.12)  
+  * https://www.techotopia.com/index.php/IOS_iPhone_iPad_eBooks  
+* 스위프트 프로그래밍(Swift 5) 3판(한빛미디어, 야곰, 2019.10)  
+* 꼼꼼한 재은 씨의 스위프트 기본편 (루비페이퍼, 이재은, 2018.05)  
+* 꼼꼼한 재은 씨의 스위프트 실전편 (Swift) (루비페이퍼, 이재은, 2018.08)  
+* 꼼꼼한 재은 씨의 Swift 문법편 (루비페이퍼, 이재은, 2017.12)  
