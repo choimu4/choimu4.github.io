@@ -3,10 +3,10 @@ layout: post
 title: iOS SkillUpThon 0
 subtitle: iOS SkillUpThon 0
 author: 민욱 최 
-excerpt_image: ../assets/images/iOS_banner.PNG
+excerpt_image: ../assets/images/iOS-banner.jpg
 categories: iOS
 banner:
-  image: ../assets/images/iOS_banner.PNG
+  image: ../assets/images/iOS-banner.jpg
   opacity: 0.618
   background: "#000"
   height: "100vh"
