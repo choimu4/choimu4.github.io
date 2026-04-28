@@ -24,8 +24,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+future: true
+
 title: 민욱 최
-email: choimu4@naver.com  
+email: choimu4@naver.com
 author: choimu4
 
 # Copyright setting
