@@ -4,7 +4,7 @@ title: 진솔아트(JINSOLART) 홈페이지 개발 작업 일지
 subtitle: Firebase Hosting + Functions + 네이버 블로그 RSS 연동
 author: 민욱 최
 excerpt_image: ../assets/images/jinsol.png
-categories: Swift
+categories: Devlog
 banner:
   image: ../assets/images/jinsol.png
   opacity: 0.618
